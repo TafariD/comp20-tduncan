@@ -1,37 +1,64 @@
-@media screen and (max-width: 300px) {
-    body {
-        background-color: lightblue;
-    }
+@media screen and (max-width: 400px) {
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 128px -240px;}
+
 }
 
-@media screen and (max-width: 500px) and (min-device-width:300px) {
-    body {
-        background-color: blue;
-    }
+@media screen and (max-width: 500px) and (min-width:400px){
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 256px -240px;}
 }
 
-@media screen and (max-width: 700px) and (min-device-width:500px){
-    body {
-        background-color: lightgreen;
-    }
+@media screen and (max-width: 600px) and (min-width:500px){
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 384px -240px;}
 }
 
-@media screen and (max-width: 900px) and (min-device-width:700px){
-    body {
-        background-color: green;
-    }
+@media screen and (max-width: 700px) and (min-width:600px){
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 512px -240px;}
+}
+
+@media screen and (max-width: 800px) and (min-width:700px){
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 0 -240px;}
 }
 
 
-@media screen and (max-width: 1200px) and (min-device-width:900px) {
-    body {
-        background-color: lightyellow;
-    }
+@media screen and (max-width: 900px) and (min-width:800px) {
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 128px 0;}
 }
 
 
-@media screen and (max-width: 1400px) and (min-device-width:1200px){
-    body {
-        background-color: yellow;
-    }
+@media screen and (max-width: 1000px) and (min-width:900px){
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 256px 0;}
+}
+
+@media screen and (max-width: 1100px) and (min-width:1000px){
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 384px 0;}
+}
+
+
+@media screen and (max-width: 1200px) and (min-width:1100px) {
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 512px 0;}
+}
+
+
+@media screen and (min-width:1200px){
+
+       .software{width:128px; height:240px;
+        background: url(software.png) 0 0;}
 }
