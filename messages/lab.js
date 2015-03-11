@@ -14,10 +14,10 @@ function myFunction(thingy) {
     var out = "";
     var i;
     for(i = 0; i < thingy.length; i++) {
-        out +=  thingy[i].content +
-        thingy[i].username + '</a><br>';
+        out +=  thingy[i].content + " " +
+        thingy[i].username;
     }
     document.getElementById("messages").innerHTML = out;
 }
 
-// This code was borrowed from www.w3schools.com
+// This code was editted from content from www.w3schools.com
