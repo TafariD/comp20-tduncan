@@ -1,10 +1,11 @@
 .usus{
 
-	font-size: 20;
+	font-size: 20px;
 }
 
 .seperate{
 
 		background-color: lightblue;
 		border-radius: 10px;
+		margin-top: 5px;
 }
