@@ -14,8 +14,8 @@ function myFunction(thingy) {
     var out = "";
     var i;
     for(i = 0; i < thingy.length; i++) {
-        out +=  "<p>"+ thingy[i].content + " " +
-        "<span class = 'usus'>" + thingy[i].username +  "</span>" +"</p>";
+        out += "<div class = 'seperate'>" + thingy[i].content + " " +
+        "<span class = 'usus'>" + thingy[i].username +  "</span>" + "</div>";
     }
     document.getElementById("messages").innerHTML = out;
 }
