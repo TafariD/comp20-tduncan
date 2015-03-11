@@ -1,11 +1,10 @@
-#messages{
-
-	border-radius: 10;
-	background-color: lightblue;
-
-}
-
 .usus{
 
 	font-size: 20;
+}
+
+.seperate{
+
+		background-color: lightblue;
+		border-radius: 10px;
 }
