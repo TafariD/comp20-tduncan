@@ -1,5 +1,4 @@
-<script>
-var xmlhttp = new XMLHttpRequest();
+var xmlhttp = new XMLHttpRequest(); 
 var url = "data.json";
 
 xmlhttp.onreadystatechange = function() {
@@ -11,13 +10,14 @@ xmlhttp.onreadystatechange = function() {
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
-function myFunction(arr) {
+function myFunction(thingy) {
     var out = "";
     var i;
-    for(i = 0; i < arr.length; i++) {
-        out += '<a href="' + arr[i].url + '">' + 
-        arr[i].display + '</a><br>';
+    for(i = 0; i < thingy.length; i++) {
+        out += '<a href="' + thingy[i].content + '">' + 
+        thingy[i].display + '</a><br>';
     }
     document.getElementById("messages").innerHTML = out;
 }
-</script>
+
+// This code was borrowed from www.w3schools.com
