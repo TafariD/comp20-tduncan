@@ -14,8 +14,8 @@ function myFunction(thingy) {
     var out = "";
     var i;
     for(i = 0; i < thingy.length; i++) {
-        out +=  thingy[i].content + " " +
-        thingy[i].username;
+        out +=  "<p>"+ thingy[i].content + " " +
+        "<span class = 'usus'>" + thingy[i].username +  "</span>" +"</p>";
     }
     document.getElementById("messages").innerHTML = out;
 }
