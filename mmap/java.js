@@ -1,4 +1,4 @@
-var xmlhttp = new XMLHttpRequest(); 
+/*var xmlhttp = new XMLHttpRequest(); 
 var url = "data.json";
 
 xmlhttp.onreadystatechange = function() {
@@ -12,7 +12,7 @@ xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
 
-var x = document.getElementById("demo");
+var x = document.getElementById("demo"); */
 
  function initialize() {
     var mapOptions = {
@@ -25,11 +25,11 @@ var x = document.getElementById("demo");
  
  google.maps.event.addDomListener(window, 'load', initialize);
 
-
+/*
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position);
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-}
+}  */
