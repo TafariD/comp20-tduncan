@@ -20,15 +20,15 @@
       
       var attempt = new XMLHttpRequest();
 
-      try {
-          attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", false);
-          attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          attempt.send();
+    
+      attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", false);
+      attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);;
 
-          myFunction(attempt.responseText);
-      }
+      PostOtherPositions(attempt.responseText);
 
-      function myFunction(thingy) {
+
+      function PostOtherPositions(thingy) { //This function should add the other positions to the map.
           for(i = 0; i < thingy.length; i++) {
         
         ppl = new google.maps.LatLng(thingy[i].lat, thingy[i].lng);
