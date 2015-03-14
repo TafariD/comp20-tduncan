@@ -15,18 +15,16 @@ xmlhttp.send();
 var x = document.getElementById("demo");
 
  function initialize() {
- 	getLocation();
-    latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-    // "..." is stuff you have to fill in
-    ...
-    ...
-    ...
-    myOptions = {
-          center: { lat: position.coords.latitude, lng: position.coords.longitude},
-          zoom: 8
-};
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  }
+    var mapOptions = {
+        center: { lat: -34.397, lng: 150.644},
+        zoom: 8
+        };
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+ }
+ 
+ google.maps.event.addDomListener(window, 'load', initialize);
+
 
 function getLocation() {
     if (navigator.geolocation) {
