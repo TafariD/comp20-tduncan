@@ -17,19 +17,16 @@
       var infowindow = new google.maps.InfoWindow();
       var places;
 
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.setRequestHeader("https", "https://secret-about-box.herokuapp.com/sendLocation"); 
-      var url = "https://secret-about-box.herokuapp.com/sendLocation";
+      
+      var attempt = new XMLHttpRequest();
 
-      xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-              var myArr = JSON.parse(xmlhttp.responseText);
-              myFunction(myArr);
-          }
+      try {
+          attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", false);
+          attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          attempt.send();
+
+          myFunction(attempt.responseText);
       }
-
-      xmlhttp.open("GET", url, true);
-      xmlhttp.send();
 
       function myFunction(thingy) {
           for(i = 0; i < thingy.length; i++) {
@@ -87,6 +84,8 @@
           infowindow.open(map, marker);
         });
         
+
+        /*
         // Calling Google Places API
         var request = {
           location: me,
@@ -95,7 +94,7 @@
         };
         service = new google.maps.places.PlacesService(map);
         service.search(request, callback);
-      }
+      } 
       
       // Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
       function callback(results, status)
@@ -109,6 +108,10 @@
         }
       }
       
+
+      
       function createMarker(place)
       {
       }
+
+      */
