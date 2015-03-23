@@ -38,6 +38,7 @@ function getMyLocation() {
 
 function renderMap()
 {
+  console.log("Rendering Map");
   me = new google.maps.LatLng(myLat, myLng);
   
   // Update map and go there...
@@ -56,9 +57,11 @@ function renderMap()
     infowindow.open(map, marker);
   });
 
+  console.log("Attempting to get JSON.");
   attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", true);
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
+  console.log("Might have gotten JSON.")
 
   PostOtherPositions(JSON.parse(attempt.responseText));
 
