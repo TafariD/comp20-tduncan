@@ -1,7 +1,3 @@
-
-// This code is originally sourced from Ming.
-
-
 var myLat = 0;
 var myLng = 0;
 var request = new XMLHttpRequest();
