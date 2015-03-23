@@ -61,7 +61,7 @@ function renderMap()
   attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", true);
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
-  console.log("Might have gotten JSON.")
+  console.log("Might have gotten JSON.");
 
   PostOtherPositions(JSON.parse(attempt.responseText));
 
