@@ -66,6 +66,8 @@ function renderMap()
 }
 
 function PostOtherPositions(posted) { //This function should add the other positions to the map.
+  console.log("We posting other students.");
+  console.log(posted);
     for(i = 0; i < posted.length; i++) {
   
         ppl = new google.maps.LatLng(posted[i].lat, posted[i].lng);
