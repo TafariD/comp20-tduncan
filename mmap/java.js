@@ -60,10 +60,9 @@ function renderMap()
   console.log("Attempting to get JSON.");
   attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", true);
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  attempt.onreadystatechange = greenlight();
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
   console.log("Might have gotten JSON.");
-
-  attempt.onreadystatechange = greenlight();
 
   console.log(JSON.parse(attempt.responseText));
 
@@ -71,6 +70,7 @@ function renderMap()
 }
 
 function greenlight() { //Checks to make sure the data is coming through before we go.
+  console.log("We are trying to greenlight the JSON");
 
    if (attempt.readystate == 4 && attempt.status == 200){
         PostOtherPositions(JSON.parse(attempt.responseText));
