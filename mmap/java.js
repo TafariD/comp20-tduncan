@@ -2,7 +2,7 @@ var myLat = 0;
 var myLng = 0;
 var request = new XMLHttpRequest();
 
-var me = new google.maps.LatLng(myLat, myLng);
+var me;
 var myOptions = {
       zoom: 13, // The larger the zoom number, the bigger the zoom
       center: me,
@@ -16,6 +16,13 @@ var places;
 
 var attempt = new XMLHttpRequest();
 
+function init()
+{
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  console.log("Call before getMyLocation()");
+  getMyLocation();
+  console.log("Call after getMyLocation()");
+}
 
 attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", false);
 attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -24,14 +31,6 @@ attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
 PostOtherPositions(JSON.parse(attempt.responseText));
 
 console.log(attempt.responseText);
-
-function init()
-{
-  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  console.log("Call before getMyLocation()");
-  getMyLocation();
-  console.log("Call after getMyLocation()");
-}
 
 function getMyLocation() {
   console.log("In getMyLocation()");
