@@ -1,8 +1,7 @@
+var me;
 var myLat = 0;
 var myLng = 0;
 var request = new XMLHttpRequest();
-
-var me;
 var myOptions = {
       zoom: 13, // The larger the zoom number, the bigger the zoom
       center: me,
@@ -12,8 +11,6 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 var places;
-
-
 var attempt = new XMLHttpRequest();
 
 function init()
@@ -23,14 +20,6 @@ function init()
   getMyLocation();
   console.log("Call after getMyLocation()");
 }
-
-attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", false);
-attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
-
-PostOtherPositions(JSON.parse(attempt.responseText));
-
-console.log(attempt.responseText);
 
 function getMyLocation() {
   console.log("In getMyLocation()");
@@ -67,6 +56,14 @@ function renderMap()
     infowindow.open(map, marker);
   });
 
+  attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", true);
+  attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
+
+  PostOtherPositions(JSON.parse(attempt.responseText));
+
+  console.log(attempt.responseText);
+}
 
 function PostOtherPositions(posted) { //This function should add the other positions to the map.
     for(i = 0; i < posted.length; i++) {
