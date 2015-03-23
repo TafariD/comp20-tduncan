@@ -72,10 +72,10 @@ function renderMap()
 function greenlight() { //Checks to make sure the data is coming through before we go.
   console.log("We are trying to greenlight the JSON");
 
-   if (attempt.readystate == 4 && attempt.status == 200){
+   if (attempt.readyState == 4 && attempt.status == 200){
         PostOtherPositions(JSON.parse(attempt.responseText));
    }
-   else if (attempt.readystate == 4 && attempt.status == 500){
+   else if (attempt.readyState == 4 && attempt.status == 500){
         alert("This is awkward... nothing came through.");
    }
 
