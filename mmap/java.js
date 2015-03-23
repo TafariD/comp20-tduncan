@@ -33,15 +33,17 @@
       function PostOtherPositions(posted) { //This function should add the other positions to the map.
           for(i = 0; i < posted.length; i++) {
         
-        ppl = new google.maps.LatLng(posted[i].lat, posted[i].lng);
-  
-        // Create a marker
-        marker = new google.maps.Marker({
-          position: ppl,
-          title: posted[i].login
-        });
+              ppl = new google.maps.LatLng(posted[i].lat, posted[i].lng);
+        
+              // Create a marker
+              marker = new google.maps.Marker({
+                position: ppl,
+                title: posted[i].login
+              });
+          }
         marker.setMap(map);
-      
+      }
+
       function init()
       {
         map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
