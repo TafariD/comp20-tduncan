@@ -62,10 +62,23 @@ function renderMap()
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
   console.log("Might have gotten JSON.");
+
+  attempt.onreadystatechange = greenlight();
+
   console.log(JSON.parse(attempt.responseText));
-  PostOtherPositions(JSON.parse(attempt.responseText));
 
   console.log(attempt.responseText);
+}
+
+function greenlight() { //Checks to make sure the data is coming through before we go.
+
+   if (attempt.readystate == 4 && attempt.status == 200){
+        PostOtherPositions(JSON.parse(attempt.responseText));
+   }
+   else if (attempt.readystate == 4 && attempt.status == 500){
+        alert("This is awkward... nothing came through.");
+   }
+
 }
 
 function PostOtherPositions(posted) { //This function should add the other positions to the map.
