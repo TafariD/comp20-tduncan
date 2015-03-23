@@ -23,23 +23,24 @@
     
       attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", false);
       attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xmlhttp.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);;
+      attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
 
-      PostOtherPositions(attempt.responseText);
+      PostOtherPositions(JSON.parse(attempt.responseText));
+
+      console.log(attempt.responseText);
 
 
-      function PostOtherPositions(thingy) { //This function should add the other positions to the map.
-          for(i = 0; i < thingy.length; i++) {
+      function PostOtherPositions(posted) { //This function should add the other positions to the map.
+          for(i = 0; i < posted.length; i++) {
         
-        ppl = new google.maps.LatLng(thingy[i].lat, thingy[i].lng);
+        ppl = new google.maps.LatLng(posted[i].lat, posted[i].lng);
   
         // Create a marker
         marker = new google.maps.Marker({
           position: ppl,
-          title: thingy[i].login;
+          title: posted[i].login
         });
         marker.setMap(map);
-        });
       
       function init()
       {
