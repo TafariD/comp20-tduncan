@@ -62,7 +62,7 @@ function renderMap()
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
   console.log("Might have gotten JSON.");
-
+  console.log(JSON.parse(attempt.responseText));
   PostOtherPositions(JSON.parse(attempt.responseText));
 
   console.log(attempt.responseText);
