@@ -96,11 +96,14 @@ function PostOtherPositions(posted) { //This function should add the other posit
           title: posted[i].login
         });
 
-        var thecontent = "Name:" + posted[i].login + "\n\r" + "Distance Away:" + dist + "km" ;
+        var thecontent = "Name:" + posted[i].login + '\n' + "Distance Away:" + dist + "km" ;
+
+        var infowindow = new google.maps.InfoWindow({
+          content: thecontent;
+        });
 
         // Open info window on click of marker (code from Ming)
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(thecontent);
           infowindow.open(map, marker);
         });
 
