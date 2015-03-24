@@ -99,7 +99,7 @@ function PostOtherPositions(posted) { //This function should add the other posit
         var thecontent = "Name:" + posted[i].login + '\n' + "Distance Away:" + dist + "km" ;
 
         var infowindow = new google.maps.InfoWindow({
-          content: thecontent;
+          content: thecontent
         });
 
         // Open info window on click of marker (code from Ming)
