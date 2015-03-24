@@ -73,6 +73,7 @@ function greenlight() { //Checks to make sure the data is coming through before 
   console.log("We are trying to greenlight the JSON");
 
    if (attempt.readyState == 4 && attempt.status == 200){
+        console.log("Data was recieved and is OK");
         PostOtherPositions(JSON.parse(attempt.responseText));
    }
    else if (attempt.readyState == 4 && attempt.status == 500){
