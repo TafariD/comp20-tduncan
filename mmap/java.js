@@ -20,7 +20,7 @@ var myimage = {
     // The anchor for this image is the base of the flagpole at 0,32.
     anchor: new google.maps.Point(0, 32),
 
-    scaledSize: new google.maps.Size(20,32)
+    scaledSize: new google.maps.Size(25, 25)
   };
 
 function init()
