@@ -92,7 +92,10 @@ function PostOtherPositions(posted) { //This function should add the other posit
         marker = new google.maps.Marker({
           position: ppl,
           title: posted[i].login
+          
         });
+
+        marker.setMap(map);
     }
-  marker.setMap(map);
+  
 }
