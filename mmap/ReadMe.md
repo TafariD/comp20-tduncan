@@ -1,7 +1,7 @@
 
     ##Identify what aspects of the work have been correctly implemented and what have not.
 
-    Now, I'm pretty sure everything was implemented correctly. The only thing is that there is a "Uncaught SyntaxError: Unexpected end of input" error that appears in the Javascript console. It is supposedly related to line 1 of the index file, but everything works and I'm not sure why the error is there.
+    Now, I'm pretty sure everything was implemented correctly.
 
     ##Identify anyone with whom you have collaborated or discussed the assignment.
 
