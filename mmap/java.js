@@ -11,16 +11,16 @@ var marker;
 var infowindow = new google.maps.InfoWindow();
 var places;
 var attempt = new XMLHttpRequest();
-var myimage = {
+var myimage = { //This code was modeled after Google's examples on the api site.
     url: 'flag.jpg',
-    // This marker is 20 pixels wide by 32 pixels tall.
-    size: new google.maps.Size(20, 50),
+    // This marker is 50 pixels wide by 25 pixels tall.
+    size: new google.maps.Size(50, 25),
     // The origin for this image is 0,0.
     origin: new google.maps.Point(0,0),
     // The anchor for this image is the base of the flagpole at 0,32.
     anchor: new google.maps.Point(0, 32),
-
-    scaledSize: new google.maps.Size(25, 50)
+    // This makes sure the image fits in the marker.
+    scaledSize: new google.maps.Size(50, 25)
   };
 
 function init()
@@ -41,7 +41,7 @@ function getMyLocation() {
     });
   }
   else {
-    alert("Geolocation is not supported by your web browser.  What a shame!");
+  alert("Geolocation is not supported by your web browser.  What a shame!");
   }
   console.log("Leaving getMyLocation()");
 }
@@ -62,20 +62,20 @@ function renderMap()
   });
   marker.setMap(map);
 
+  // Open info window on click of marker (code from Ming)
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent("Login: JoshWright");
+    infowindow.open(map, this);
+  });
+
   console.log("Attempting to get JSON.");
   attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", true);
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   attempt.onreadystatechange = greenlight;
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
-  console.log("Might have gotten JSON.");
-
-  console.log(JSON.parse(attempt.responseText));
-
-  console.log(attempt.responseText);
 }
 
 function greenlight() { //Checks to make sure the data is coming through before we go.
-  console.log("We are trying to greenlight the JSON");
 
    if (attempt.readyState == 4 && attempt.status == 200){
         console.log("Data was recieved and is OK");
@@ -88,8 +88,7 @@ function greenlight() { //Checks to make sure the data is coming through before 
 }
 
 function PostOtherPositions(posted) { //This function should add the other positions to the map.
-  console.log("We are posting other students.");
-  console.log(posted);
+
     for(i = 0; i < posted.length; i++) {
   
         ppl = new google.maps.LatLng(posted[i].lat, posted[i].lng);
@@ -108,7 +107,6 @@ function PostOtherPositions(posted) { //This function should add the other posit
 
         // Open info window on click of marker (code from Ming)
         google.maps.event.addListener(marker, 'click', function() {
-          console.log(this);
           infowindow.setContent(this.content);
           infowindow.open(map, this);
         });
