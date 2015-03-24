@@ -98,9 +98,6 @@ function PostOtherPositions(posted) { //This function should add the other posit
 
         marker.content = "" + posted[i].login + " is " + dist + " km away from you." ;
 
-        var infowindow = new google.maps.InfoWindow({
-          content: thecontent
-        });
         marker.setMap(map);
 
         // Open info window on click of marker (code from Ming)
