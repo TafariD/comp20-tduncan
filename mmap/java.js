@@ -11,7 +11,17 @@ var marker;
 var infowindow = new google.maps.InfoWindow();
 var places;
 var attempt = new XMLHttpRequest();
-var myimage = 'flag.jpg';
+var myimage = {
+    url: 'flag.jpg',
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is 0,0.
+    origin: new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,32.
+    anchor: new google.maps.Point(0, 32),
+
+    scaledSize: new google.maps.Size(25, 25)
+  };
 
 function init()
 {
