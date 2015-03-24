@@ -64,7 +64,7 @@ function renderMap()
 
   // Open info window on click of marker (code from Ming)
   google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent("Login: JoshWright");
+    infowindow.setContent("This is you! Your Login: JoshWright");
     infowindow.open(map, this);
   });
 
