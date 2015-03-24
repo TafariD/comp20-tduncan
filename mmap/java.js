@@ -1,7 +1,6 @@
 var me;
 var myLat = 0;
 var myLng = 0;
-var request = new XMLHttpRequest();
 var myOptions = {
       zoom: 13, // The larger the zoom number, the bigger the zoom
       center: me,
@@ -60,7 +59,7 @@ function renderMap()
   console.log("Attempting to get JSON.");
   attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", true);
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  attempt.onreadystatechange = greenlight();
+  attempt.onreadystatechange = greenlight;
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
   console.log("Might have gotten JSON.");
 
@@ -83,7 +82,7 @@ function greenlight() { //Checks to make sure the data is coming through before 
 }
 
 function PostOtherPositions(posted) { //This function should add the other positions to the map.
-  console.log("We posting other students.");
+  console.log("We are posting other students.");
   console.log(posted);
     for(i = 0; i < posted.length; i++) {
   
