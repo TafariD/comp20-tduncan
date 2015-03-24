@@ -102,7 +102,8 @@ function PostOtherPositions(posted) { //This function should add the other posit
 
         // Open info window on click of marker (code from Ming)
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.content = this.content;
+          console.log(this);
+          infowindow.setContent(this.content);
           infowindow.open(map, this);
         });
 
