@@ -87,15 +87,54 @@ function PostOtherPositions(posted) { //This function should add the other posit
     for(i = 0; i < posted.length; i++) {
   
         ppl = new google.maps.LatLng(posted[i].lat, posted[i].lng);
+
+        var dist = distance(posted[i].lat,posted[i].lng);
   
         // Create a marker
         marker = new google.maps.Marker({
           position: ppl,
           title: posted[i].login
-          
+        });
+
+        var thecontent = "Name:" + posted[i].login + \n\r + "Distance Away:" + dist + "km" ;
+
+        // Open info window on click of marker (code from Ming)
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(thecontent);
+          infowindow.open(map, marker);
         });
 
         marker.setMap(map);
     }
   
+}
+
+
+function distance(Lattt,Longgg){
+
+  Number.prototype.toRad = function() {
+   return this * Math.PI / 180;
+  }
+
+  var lat2 = Lattt
+  var lon2 = Longgg;
+  var lat1 = myLat; 
+  var lon1 = myLng; 
+
+  var R = 6371; // km 
+  //has a problem with the .toRad() method below.
+  var x1 = lat2-lat1;
+  var dLat = x1.toRad();  
+  var x2 = lon2-lon1;
+  var dLon = x2.toRad();  
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                  Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+                  Math.sin(dLon/2) * Math.sin(dLon/2);  
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; 
+
+  return d;
+
+  //This function's code was borrowed from Stack Overflow.
+
 }
