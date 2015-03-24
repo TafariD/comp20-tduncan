@@ -11,7 +11,7 @@ var marker;
 var infowindow = new google.maps.InfoWindow();
 var places;
 var attempt = new XMLHttpRequest();
-var myimage = 'flag.jpeg';
+var myimage = 'flag.jpg';
 
 function init()
 {
