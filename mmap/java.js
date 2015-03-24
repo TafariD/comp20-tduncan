@@ -11,6 +11,8 @@ var marker;
 var infowindow = new google.maps.InfoWindow();
 var places;
 var attempt = new XMLHttpRequest();
+var myimage = 'http://www.my-island-jamaica.com/images/official-jamaica-flag.jpg';
+
 
 function init()
 {
@@ -46,7 +48,8 @@ function renderMap()
   // Create a marker
   marker = new google.maps.Marker({
     position: me,
-    title: "Here I Am!"
+    title: "Here I Am!",
+    icon: myimage
   });
   marker.setMap(map);
     
