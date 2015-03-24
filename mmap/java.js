@@ -96,7 +96,7 @@ function PostOtherPositions(posted) { //This function should add the other posit
           title: posted[i].login
         });
 
-        var thecontent = "" + posted[i].login + 'is' + dist + "km away from" ;
+        marker.content = "" + posted[i].login + " is " + dist + " km away from you." ;
 
         var infowindow = new google.maps.InfoWindow({
           content: thecontent
@@ -105,6 +105,9 @@ function PostOtherPositions(posted) { //This function should add the other posit
 
         // Open info window on click of marker (code from Ming)
         google.maps.event.addListener(marker, 'click', function() {
+          var infowindow = new google.maps.InfoWindow({
+            content: this.content
+          });
           infowindow.open(map, this);
         });
 
