@@ -96,7 +96,7 @@ function PostOtherPositions(posted) { //This function should add the other posit
           title: posted[i].login
         });
 
-        var thecontent = "Name:" + posted[i].login + '\n' + "Distance Away:" + dist + "km" ;
+        var thecontent = "" + posted[i].login + 'is' + dist + "km away from" ;
 
         var infowindow = new google.maps.InfoWindow({
           content: thecontent
