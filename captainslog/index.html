@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Captain's Log</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>
+
+  $(function FirstRun()
+  {
+    elem = document.getElementById("log");
+    output = "";
+    for (key in localStorage) {
+      output = "<p>" + localStorage[key] + "</p>\n" + output;
+    }
+    elem.innerHTML = output;
+  });
+
+  function reload()
+  {
+    elem = document.getElementById("log");
+    output = "";
+    for (key in localStorage) {
+      output = "<p>" + localStorage[key] + "</p>\n" + output;
+    }
+    elem.innerHTML = output;
+  }
+
+  $(document).keyup(function(e) {
+    if(e.keyCode == 13) {
+        store();
+    }
+  });
+
+  function store()
+  {
+    var now = new Date();
+    txt = now + " - " +document.getElementById("msg").value;
+    localStorage[new Date().getTime()] = txt;
+    reload();
+  }
+
+
+	</script>
+</head>
+
+<body>
+	<h1>Captain's Log</h1>
+	<h3>New entry: <input type="text" id="msg" name="msg" size="30"/></h3>
+	<div id="log"></div>
+</body>
+</html>
