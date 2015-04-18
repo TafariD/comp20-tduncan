@@ -50,7 +50,7 @@ function renderMap()
 {
   console.log("Rendering Map");
   me = new google.maps.LatLng(myLat, myLng);
-  
+
   // Update map and go there...
   map.panTo(me);
 
@@ -69,7 +69,7 @@ function renderMap()
   });
 
   console.log("Attempting to get JSON.");
-  attempt.open("POST","https://secret-about-box.herokuapp.com/sendLocation", true);
+  attempt.open("POST","https://floating-fjord-9685.herokuapp.com/sendLocation", true);
   attempt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   attempt.onreadystatechange = greenlight;
   attempt.send("login=JoshWright&lat=" + myLat + "&lng=" + myLng);
@@ -90,11 +90,11 @@ function greenlight() { //Checks to make sure the data is coming through before 
 function PostOtherPositions(posted) { //This function should add the other positions to the map.
 
     for(i = 0; i < posted.length; i++) {
-  
+
         ppl = new google.maps.LatLng(posted[i].lat, posted[i].lng);
 
         var dist = distance(posted[i].lat,posted[i].lng);
-  
+
         // Create a marker
         marker = new google.maps.Marker({
           position: ppl,
@@ -112,7 +112,7 @@ function PostOtherPositions(posted) { //This function should add the other posit
         });
 
     }
-  
+
 }
 
 
@@ -124,20 +124,20 @@ function distance(Lattt,Longgg){
 
   var lat2 = Lattt
   var lon2 = Longgg;
-  var lat1 = myLat; 
-  var lon1 = myLng; 
+  var lat1 = myLat;
+  var lon1 = myLng;
 
-  var R = 6371; // km 
+  var R = 6371; // km
   //has a problem with the .toRad() method below.
   var x1 = lat2-lat1;
-  var dLat = x1.toRad();  
+  var dLat = x1.toRad();
   var x2 = lon2-lon1;
-  var dLon = x2.toRad();  
-  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
-                  Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
-                  Math.sin(dLon/2) * Math.sin(dLon/2);  
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-  var d = R * c; 
+  var dLon = x2.toRad();
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c;
 
   return d;
 
