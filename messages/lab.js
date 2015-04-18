@@ -1,4 +1,4 @@
-var xmlhttp = new XMLHttpRequest(); 
+var xmlhttp = new XMLHttpRequest();
 var url = "data.json";
 
 xmlhttp.onreadystatechange = function() {
