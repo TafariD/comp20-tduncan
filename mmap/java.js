@@ -26,13 +26,10 @@ var myimage = { //This code was modeled after Google's examples on the api site.
 function init()
 {
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  console.log("Call before getMyLocation()");
   getMyLocation();
-  console.log("Call after getMyLocation()");
 }
 
 function getMyLocation() {
-  console.log("In getMyLocation()");
   if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
     navigator.geolocation.getCurrentPosition(function(position) {
       myLat = position.coords.latitude;
@@ -43,12 +40,10 @@ function getMyLocation() {
   else {
   alert("Geolocation is not supported by your web browser.  What a shame!");
   }
-  console.log("Leaving getMyLocation()");
 }
 
 function renderMap()
 {
-  console.log("Rendering Map");
   me = new google.maps.LatLng(myLat, myLng);
 
   // Update map and go there...
@@ -78,7 +73,6 @@ function renderMap()
 function greenlight() { //Checks to make sure the data is coming through before we go.
 
    if (attempt.readyState == 4 && attempt.status == 200){
-        console.log("Data was recieved and is OK");
         PostOtherPositions(JSON.parse(attempt.responseText));
    }
    else if (attempt.readyState == 4 && attempt.status == 500){
