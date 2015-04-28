@@ -35,11 +35,17 @@
               <li>Danger: <span class = 'danger'>HIGH</span></li>
             </ul> 
             <p>By sending javascript code disgused as login information, I was able to briefly post the code for an annoying <a href="http://cdn.tripwiremagazine.com/wp-content/uploads/images/stories/Articles/9_Funniest_JavaScript_effects/You%20must%20love%20me.html">script</a> that refuses to let the client click "no" in answer to the question, "do you love me?" which takes over the screen. The code, however, didn't really work. What did prove very effective, however, was code that redirected the site to the tedcruz.org homepage. That was implemented with a very simple <pre><code>window.location = \"https://www.tedcruz.org/";"</code></pre> code encased in script tags. The server now passes this data to any client that accesses it, causing redirects.</p>
+
+            <p>A proposed solution would be to excute code that removes the "script" tags from input. It could also change any open arrow '<' or close arrow '>' symbols to a different symbol (for example %$%) when in the server, and send that to the client. The client code could then involve a measure that would turn the symbol back into script tags <strong>after</strong> it was displayed, to prevent the code from actually implementing itself. </p>
           </li>
 
           <div class="container">
+              <div>
               <img src = "Error3.png">
-              <img src = "Error4.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+              </div>
+              <div>
+              <img src = "Error4.png">
+              </div><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
           </div>
 
           <li><h3>Overflow of Information a.k.a. Denial of Service (DoS / DDoS)</h3>
@@ -48,6 +54,8 @@
               <li>Danger: <span class = 'danger'>HIGH</span></li>
             </ul> 
             <p>This attack involved sending mass amounts of data at the server targetted. Typically, DDoS attacks involve using multiple computers, servers, and/or networks to launch a coordinated attack on a single site/server. In my case, I mymicked this by sending waves of text via Postman to fill the server's memory.</p>
+
+            <p>The server side code could check the size of the input and dissallow any inputs larger then the exected size. Furthermore, if it notices that a large percentage of its requests and responses come from one address, it could termporarily halt any traffic from that IP.</p>
           </li>
 
           <div class="container">
@@ -60,7 +68,8 @@
               <li>Danger: <span class = 'danger'>MODERATE</span></li>
             </ul> 
             <p>The server does not check to ensure that the data is valid. This means that one could send false data, implying that they are located at Beijing, China when they are really located in Kentucky. Furthermore, they could even send false data that holds nonexistent locations, like latitude 4,000,000 and longitutde 23,000,000. </p>
-            <p></p>
+            
+            <p>The fix for this would be a simple error check. If the data is unrealstic, it could refuse to input it. I'm not sure otherwise how to ensure that the user's location is actually accurate, as the server has no way of knowing exactly where they are unless the location the broswer sends is accurate. This is a flaw that I would have to do my research on. Even in daily life I've noticed issues with apps or websites I use where they will wrongly take in my location without me trying to do anything malicious.</p>
           </li>
 
           <div class="container">
@@ -73,7 +82,8 @@
               <li>Danger: <span class = 'danger'>EXTREMELY HIGH</span></li>
             </ul> 
             <p>Anyone can access the server! Anyone can submit data! There's no protection to ensure that the person who looks at the server should be able to see it. This of course is a large issue that would require significant resturcturing of the server to prevent it. It's possible that the problems above can be avoided if the server has a secure login system, but without it anything is possible for anyone with a computer to do.</p>
-            <p></p>
+            
+            <p>There is a lot of code available on the internet to compose a login system. A very secure system would be complicated for one to do with our current level of expertise, but a simple authenticiation system shouldn't be to hard to implement. At the very least, there should be some kind of check to ensure the client has the permission to access the data, perhaps it could have a key or password it sends to the server with each transaction?</p>
           </li>
 
            <div class="container">
