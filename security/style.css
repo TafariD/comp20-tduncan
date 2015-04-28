@@ -13,8 +13,13 @@ h1{
 }
 
 .container {
- width: 500px;  
+    width: 300px;
+    padding: 25px;
+    border: 25px solid navy;
+    margin: 25px;  
 }
 .container img {
- float: left;
+ 	float: left;
+ 	max-width: 50%;
+ 	max-height: 50%;
 }
