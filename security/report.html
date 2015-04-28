@@ -1,0 +1,101 @@
+<html>
+<head>
+    <title>Comp20 Security Assessment </title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div>
+        <h1>Assessment of Heroku Student Built Server</h1>
+        <p>Completed by </p> <a href="http://tafarid.github.io">Tafari Duncan</a>
+    </div> 
+
+    <div>
+        <h2>Introduction</h2>
+        <p>The product in this case is an <a href="http://tuftsdev.github.io/WebProgramming/assignments/a3.html">assignment</a>
+        completed during the 2015 <a href="http://tuftsdev.github.io/WebProgramming/">Web Programming</a> course taught by
+        Professor Ming Chow. I will be evaluting the security of a web server developed by Anna R.
+        As explained by the assignment, Anna used "Heroku, Node.js with the Express web framework, and MongoDB, ... to build a web application that maintains "location check-ins" (login, latitude, and longitude) for a long period of time."</p>
+
+        <p>Unfortunately, the server is not secure, and it is my job to find and note the vulnerabilties. It is possible that there
+        are more vulnerabilties then the ones currently listed below, as this is not meant to be a complete professional anaylsis of
+        Anna's server.</p>
+
+        <h2>Methodology</h2>
+        <p>This code was tested using "black-box" and "white-box" methods. Black-box testing denotes the fact that I attacked the website without the source code using only the URL and publically available tools. I did so, and found those vulnerabilites without use or understanding of the specific source code and its implementation. White-box testing denotes the testing done after I had looked at the source code and was able to preform more informed attacks.</p>
+
+        <h2>Abstract of Findings</h2>
+        <p>This code was found to be vulnerable to XSS Cross Side Scripting, Overflow of Information, and the falsification of data. This means that it is possible for someone to hijack the user's client using javascript code to run malicious hardware. It also means it is possible to send large amounts of nonsensical data to the sever to overwhelm it, possibly filling the server's memory space and forcing it offline. Lastly, it was noted that it was easy to send the server false data telling it that the client was at locations that did not exist, such as lattitudes in the millions.</p>
+
+        <h2>Issues</h2>
+        <ol type="1"> <!-- The code to produce an ordered list was borrowed from W3Schools -->
+          <li><h5>XSS Cross Side Scripting</h5>
+             <ul style="list-style-type:disc">
+              <li>Affects Client, Caused by Malicious Server Input</li>
+              <li>Danger: HIGH</li>
+            </ul> 
+            <p>By sending javascript code disgused as login information, I was able to briefly post the code for an annoying <a href="http://cdn.tripwiremagazine.com/wp-content/uploads/images/stories/Articles/9_Funniest_JavaScript_effects/You%20must%20love%20me.html">script</a> that refuses to let the client click "no" in answer to the question, "do you love me?" which takes over the screen. The code, however, didn't really work. What did prove very effective, however, was code that redirected the site to the tedcruz.org homepage. That was implemented with a very simple <pre><code>window.location = \"https://www.tedcruz.org/";"</code></pre> code encased in script tags. The server now passes this data to any client that accesses it, causing redirects.</p>
+          </li>
+          <li><h5>Overflow of Information a.k.a. Denial of Service (DoS / DDoS)</h5>
+            <p>This attack involved sending mass amounts of data at the server targetted. Typically, DDoS attacks involve using multiple computers, servers, and/or networks to launch a coordinated attack on a single site/server. In my case, I mymicked this by sending waves of text via Postman to fill the server's memory.</p>
+          </li>
+          <li><h5>Falsiification of Data</h5>
+            <p>The program in </p>
+            <p></p>
+          </li>
+        </ol> 
+
+
+
+    </div>
+
+
+    
+    <div id= "My_Face">
+    <img src="IMG_2101.JPG" alt = "Face">
+    </div>
+
+    <div id= "below_pic"><p>(I do own my face, above, but not this wonderful background.)</p>
+    <h2>Aren't I awesome?</h2>
+    </div>
+
+    <div id= "Bioo">
+        <a href="http://tafarid.github.io/bio.html">My Bio!<br></a>
+        <a href="http://tafarid.github.io/resume.html">My Resume!</a>
+    </div>
+
+</body>
+</html>
+
+
+    ###Introduction### - "Provide a description of the product and what you were hired to do"
+
+The product is the heroku server. More specifically, its a server built by Comp 20 student Anna Richardson. I will be assessing its security and ability to defend from malicious tampering. 
+
+    ###Methodology### - "Describe your methodology pen testing the application, including the tools that you used"
+
+
+
+
+
+
+    ###Abstract of Findings### - "Provide an overview of all the security and privacy issues you identified. This section should be written for non-technical managers who do not have technical expertise and do not have time to read the entire document. Write this section using lay language".
+
+
+
+
+
+
+    ###Issues Found### - "For each issue that you find, document:
+        Issue (e.g., database injection, really bad programming practice)
+        Location / page where issue was found
+        Severity of issue (e.g., low, medium , or high). Justify your answer.
+        Description of issue. How did you find it? A screenshot of problem is excellent.
+        Proof of vulnerability. Screenshots are ideal.
+        Resolution. How did you resolve the issue? Show code if possible."
+
+
+
+
+
+
+    ###Conclusion### - "You can also list future considerations and recommendations with costs."
