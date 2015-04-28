@@ -1,5 +1,20 @@
 
 h2{
-border-bottom: 1px solid #CCC;
-text-align: center;
+	border-bottom: 1px solid #CCC;
+	text-align: center;
+}
+
+h1{
+	text-align: center;
+}
+
+.danger{
+	color: red;
+}
+
+.container {
+ width: 500px;  
+}
+.container img {
+ float: left;
 }

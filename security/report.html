@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
     <title>Comp20 Security Assessment </title>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -28,45 +29,71 @@
 
         <h2>Issues</h2>
         <ol type="1"> <!-- The code to produce an ordered list was borrowed from W3Schools -->
-          <li><h5>XSS Cross Side Scripting</h5>
+          <li><h3>XSS Cross Side Scripting</h3>
              <ul style="list-style-type:disc">
               <li>Affects Client, Caused by Malicious Server Input</li>
-              <li>Danger: HIGH</li>
+              <li>Danger: <span class = 'danger'>HIGH</span></li>
             </ul> 
             <p>By sending javascript code disgused as login information, I was able to briefly post the code for an annoying <a href="http://cdn.tripwiremagazine.com/wp-content/uploads/images/stories/Articles/9_Funniest_JavaScript_effects/You%20must%20love%20me.html">script</a> that refuses to let the client click "no" in answer to the question, "do you love me?" which takes over the screen. The code, however, didn't really work. What did prove very effective, however, was code that redirected the site to the tedcruz.org homepage. That was implemented with a very simple <pre><code>window.location = \"https://www.tedcruz.org/";"</code></pre> code encased in script tags. The server now passes this data to any client that accesses it, causing redirects.</p>
           </li>
-          <li><h5>Overflow of Information a.k.a. Denial of Service (DoS / DDoS)</h5>
+
+          <div class="container">
+              <img src = "Error3.png">
+              <img src = "Error4.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+
+          <li><h3>Overflow of Information a.k.a. Denial of Service (DoS / DDoS)</h3>
+            <ul style="list-style-type:disc">
+              <li>Affects Server, Caused by Overwhelming Server with Input</li>
+              <li>Danger: <span class = 'danger'>HIGH</span></li>
+            </ul> 
             <p>This attack involved sending mass amounts of data at the server targetted. Typically, DDoS attacks involve using multiple computers, servers, and/or networks to launch a coordinated attack on a single site/server. In my case, I mymicked this by sending waves of text via Postman to fill the server's memory.</p>
           </li>
-          <li><h5>Falsiification of Data</h5>
-            <p>The program in </p>
+
+          <div class="container">
+              <img src = "Error1.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+
+          <li><h3>Falsification of Data</h3>
+            <ul style="list-style-type:disc">
+              <li>Affects Server & Client, Caused by False Server Input</li>
+              <li>Danger: <span class = 'danger'>MODERATE</span></li>
+            </ul> 
+            <p>The server does not check to ensure that the data is valid. This means that one could send false data, implying that they are located at Beijing, China when they are really located in Kentucky. Furthermore, they could even send false data that holds nonexistent locations, like latitude 4,000,000 and longitutde 23,000,000. </p>
             <p></p>
           </li>
-        </ol> 
+
+          <div class="container">
+              <img src = "Error2.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+
+          <li><h3>No Login or Secure Site Access System</h3>
+            <ul style="list-style-type:disc">
+              <li>Affects Server, Caused by Free Access To Data Site</li>
+              <li>Danger: <span class = 'danger'>EXTREMELY HIGH</span></li>
+            </ul> 
+            <p>Anyone can access the server! Anyone can submit data! There's no protection to ensure that the person who looks at the server should be able to see it. This of course is a large issue that would require significant resturcturing of the server to prevent it. It's possible that the problems above can be avoided if the server has a secure login system, but without it anything is possible for anyone with a computer to do.</p>
+            <p></p>
+          </li>
+
+           <div class="container">
+              <img src = "Error5.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+        </ol>
+
+
+        <h2>Conclusion</h2>
+        <p>In Conclusion, it seems that the issues with the server tested are significant. The data can be maniuplated, accessed, and potentially altered by anyone with a url link to the server. Furthermore, it is extremely vulnerable to DDoS attacks, meaning the server can be removed from access by anyone at anytime. The client is also at risk as well, as the server allows for Cross Side scripting attacks that can cripple or manipulate the browser accessing the server.</p>
+        <p>The cost of fixing these issues fortunately appears to be cheap, a quick search on Google reveals many more helpful suggestions on StackOverflow as well as potential login implementions that can be purchased for as low as little as $15.</p> 
 
 
 
-    </div>
-
-
-    
-    <div id= "My_Face">
-    <img src="IMG_2101.JPG" alt = "Face">
-    </div>
-
-    <div id= "below_pic"><p>(I do own my face, above, but not this wonderful background.)</p>
-    <h2>Aren't I awesome?</h2>
-    </div>
-
-    <div id= "Bioo">
-        <a href="http://tafarid.github.io/bio.html">My Bio!<br></a>
-        <a href="http://tafarid.github.io/resume.html">My Resume!</a>
     </div>
 
 </body>
 </html>
 
-
+<!--
     ###Introduction### - "Provide a description of the product and what you were hired to do"
 
 The product is the heroku server. More specifically, its a server built by Comp 20 student Anna Richardson. I will be assessing its security and ability to defend from malicious tampering. 
@@ -98,4 +125,4 @@ The product is the heroku server. More specifically, its a server built by Comp 
 
 
 
-    ###Conclusion### - "You can also list future considerations and recommendations with costs."
+    ###Conclusion### - "You can also list future considerations and recommendations with costs." -->
