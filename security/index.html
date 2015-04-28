@@ -1,15 +1,107 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="1;url=http://tuftsdev.github.io/comp20-tduncan/security/report.html">
-        <script type="text/javascript">
-            window.location.href = "http://tuftsdev.github.io/comp20-tduncan/security/report.html"
-        </script>
-        <title>Page Redirection</title>
-    </head>
-    <body>
-        <!-- This code is borrowed from Stack Overflow - http://stackoverflow.com/questions/5411538/redirect-from-an-html-page-->
-        If you are not redirected automatically, follow the <a href='http://tuftsdev.github.io/comp20-tduncan/security/report.html'>link to example</a>
-    </body>
+<head>
+    <title>Comp20 Security Assessment </title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div>
+        <h1>Assessment of Heroku Student Built Server</h1>
+        <p>Completed by </p> <a href="http://tafarid.github.io">Tafari Duncan</a>
+    </div> 
+
+    <div>
+        <h2>Introduction</h2>
+        <p>The product in this case is an <a href="http://tuftsdev.github.io/WebProgramming/assignments/a3.html">assignment</a>
+        completed during the 2015 <a href="http://tuftsdev.github.io/WebProgramming/">Web Programming</a> course taught by
+        Professor Ming Chow. I will be evaluting the security of a web server developed by Anna R.
+        As explained by the assignment, Anna used "Heroku, Node.js with the Express web framework, and MongoDB, ... to build a web application that maintains "location check-ins" (login, latitude, and longitude) for a long period of time."</p>
+
+        <p>Unfortunately, the server is not secure, and it is my job to find and note the vulnerabilties. It is possible that there
+        are more vulnerabilties then the ones currently listed below, as this is not meant to be a complete professional anaylsis of
+        Anna's server.</p>
+
+        <h2>Methodology</h2>
+        <p>This code was tested using "black-box" and "white-box" methods. Black-box testing denotes the fact that I attacked the website without the source code using only the URL and publically available tools. I did so, and found those vulnerabilites without use or understanding of the specific source code and its implementation. White-box testing denotes the testing done after I had looked at the source code and was able to preform more informed attacks.</p>
+
+        <h2>Abstract of Findings</h2>
+        <p>This code was found to be vulnerable to XSS Cross Side Scripting, Overflow of Information, and the falsification of data. This means that it is possible for someone to hijack the user's client using javascript code to run malicious hardware. It also means it is possible to send large amounts of nonsensical data to the sever to overwhelm it, possibly filling the server's memory space and forcing it offline. Lastly, it was noted that it was easy to send the server false data telling it that the client was at locations that did not exist, such as lattitudes in the millions.</p>
+
+        <h2>Issues</h2>
+        <ol type="1"> <!-- The code to produce an ordered list was borrowed from W3Schools -->
+          <li><h3>XSS Cross Side Scripting</h3>
+             <ul style="list-style-type:disc">
+              <li>Affects Client, Caused by Malicious Server Input</li>
+              <li>Danger: <span class = 'danger'>HIGH</span></li>
+            </ul> 
+            <p>By sending javascript code disgused as login information, I was able to briefly post the code for an annoying <a href="http://cdn.tripwiremagazine.com/wp-content/uploads/images/stories/Articles/9_Funniest_JavaScript_effects/You%20must%20love%20me.html">script</a> that refuses to let the client click "no" in answer to the question, "do you love me?" which takes over the screen. The code, however, didn't really work. What did prove very effective, however, was code that redirected the site to the tedcruz.org homepage. That was implemented with a very simple <pre><code>window.location = \"https://www.tedcruz.org/";"</code></pre> code encased in script tags. The server now passes this data to any client that accesses it, causing redirects.</p>
+
+            <p>A proposed solution would be to excute code that removes the "script" tags from input. It could also change any open arrow '<' or close arrow '>' symbols to a different symbol (for example %$%) when in the server, and send that to the client. The client code could then involve a measure that would turn the symbol back into script tags <strong>after</strong> it was displayed, to prevent the code from actually implementing itself. </p>
+          </li>
+
+          <div class="container">
+              <div>
+              <img alt = "Page Redirect To TedCruz.org" src = "Error3.png">
+              </div>
+              <h2></h2>
+              <div>
+              <img alt = "Server takes in script tags" src = "Error4.png">
+              </div><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+
+          <li><h3>Risk of Overflow of Information a.k.a. Denial of Service (DoS / DDoS) Attack</h3>
+            <ul style="list-style-type:disc">
+              <li>Affects Server, Caused by Overwhelming Server with Input</li>
+              <li>Danger: <span class = 'danger'>HIGH</span></li>
+            </ul> 
+            <p>This attack involved sending mass amounts of data at the server targetted. Typically, DDoS attacks involve using multiple computers, servers, and/or networks to launch a coordinated attack on a single site/server. In my case, I mymicked this by sending waves of text via Postman to fill the server's memory. The text was disgussed as a login name, and the server took in wide ranges of large strings. </p>
+
+            <p>The server side code could check the size of the input and dissallow any inputs larger then the exected size. Furthermore, if it notices that a large percentage of its requests and responses come from one address, it could termporarily halt any traffic from that IP.</p>
+          </li>
+
+          <div class="container">
+              <img alt = "Large sums of random data sent in as a login" src = "Error1.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+
+          <li><h3>Falsification of Data</h3>
+            <ul style="list-style-type:disc">
+              <li>Affects Server & Client, Caused by False Server Input</li>
+              <li>Danger: <span class = 'danger'>MODERATE</span></li>
+            </ul> 
+            <p>The server does not check to ensure that the data is valid. This means that one could send false data, implying that they are located at Beijing, China when they are really located in Kentucky. Furthermore, they could even send false data that holds nonexistent locations, like latitude 4,000,000 and longitutde 23,000,000. </p>
+            
+            <p>The fix for this would be a simple error check. If the data is unrealstic, it could refuse to input it. I'm not sure otherwise how to ensure that the user's location is actually accurate, as the server has no way of knowing exactly where they are unless the location the broswer sends is accurate. This is a flaw that I would have to do my research on. Even in daily life I've noticed issues with apps or websites I use where they will wrongly take in my location without me trying to do anything malicious.</p>
+          </li>
+
+          <div class="container">
+              <img alt = "HAHAHAHA is not a valid login, nor are they at a real location."src = "Error2.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+
+          <li><h3>No Login or Secure Site Access System</h3>
+            <ul style="list-style-type:disc">
+              <li>Affects Server, Caused by Free Access To Data Site</li>
+              <li>Danger: <span class = 'danger'>EXTREMELY HIGH</span></li>
+            </ul> 
+            <p>Anyone can access the server! Anyone can submit data! There's no protection to ensure that the person who looks at the server should be able to see it. This of course is a large issue that would require significant resturcturing of the server to prevent it. It's possible that the problems above can be avoided if the server has a secure login system, but without it anything is possible for anyone with a computer to do.</p>
+            
+            <p>There is a lot of code available on the internet to compose a login system. A very secure system would be complicated for one to do with our current level of expertise, but a simple authenticiation system shouldn't be to hard to implement. At the very least, there should be some kind of check to ensure the client has the permission to access the data, perhaps it could have a key or password it sends to the server with each transaction?</p>
+          </li>
+
+           <div class="container">
+              <img alt = "Any client can access without permissions." src = "Error5.png"><!-- Code from http://stackoverflow.com/questions/8375939/css-how-to-break-images-into-rows-->
+          </div>
+        </ol>
+
+
+        <h2>Conclusion</h2>
+        <p>In Conclusion, it seems that the issues with the server tested are significant. The data can be maniuplated, accessed, and potentially altered by anyone with a url link to the server. Furthermore, it is extremely vulnerable to DDoS attacks, meaning the server can be removed from access by anyone at anytime. The client is also at risk as well, as the server allows for Cross Side scripting attacks that can cripple or manipulate the browser accessing the server.</p>
+        <p>The cost of fixing these issues fortunately appears to be cheap, a quick search on Google reveals many more helpful suggestions on StackOverflow as well as potential login implementions that can be purchased for as low as little as $15.
+        <br><br><br><br></p>
+
+
+
+
+    </div>
+
+</body>
 </html>
