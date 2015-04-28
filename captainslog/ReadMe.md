@@ -1,15 +1,19 @@
-##Every assignment and lab shall include a README file that describes the work. This description must:##
+##Identify what aspects of the work have been correctly implemented and what have not.
 
-#Identify what aspects of the work have been correctly implemented and what have not.
+-- The code works, I believe. At least it works on Chrome and Firefox. I do not own a copy of IE and so I have not tested it on IE. Firefox, however, handles local storage in a unique way that I do not know how to counter. It seems to have something to do with the fact that in Firefox, keys for local storage include the clear(), removeItem(), setItem(), getItem(),and key() functions. This means that the way I access the locally stored data also grabs these functions and prints them. Why this happens is mystifying....
 
---So the code works. I believe that it functions entirely as intended. However, it does not work on IE or Firefox. Similar to other students, I have been unable to resolve the fact that different browsers handle their local storage differently, and as such, when it is first run of Firefox, the code incorrectly adds empty objects to the text it will display. The empty objects are always on top.
 
-Identify anyone with whom you have collaborated or discussed the assignment.
+##Identify anyone with whom you have collaborated or discussed the assignment.
 
---It was just me with some starting TA help.
+Ming and I talked for a while about the above issue, but are still unclear on the solution. Otherwise, I pretty much did it myself with some starting help from a TA.
 
-Say approximately how many hours you have spent completing the assignment.
 
--- 3 hours.
+##Say approximately how many hours you have spent completing the assignment.
 
-Be written in either text format (README.txt) or in Markdown (README.md). No other formats will be accepted.
+4 hours approx
+
+
+##Be written in either text format (README.txt) or in Markdown (README.md). No other formats will be accepted.
+
+
+YES
